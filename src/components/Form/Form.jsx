@@ -19,20 +19,18 @@ const Form = () => {
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    data.prompt = propmt;
-    const responsez = getData(data);
-    console.log(responsez);
-  }, []);
-
-  function postRequest() {
+  async function postRequest() {
     if (propmt === "") {
       setError("Prompt cannot be blank");
       return;
     }
 
     setError("");
-    // setResponse(getData(data));
+    data.prompt = propmt;
+    setPropmt("");
+    console.log(data.prompt);
+    setResponse(await getData(data));
+    console.log("response=>", response);
   }
 
   return (
@@ -42,6 +40,7 @@ const Form = () => {
           Text area:
           <textarea
             placeholder='Enter your request'
+            value={propmt}
             onChange={(e) => {
               setPropmt(e.target.value);
             }}

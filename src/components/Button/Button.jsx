@@ -1,7 +1,9 @@
 import React from "react";
 
-const Button = () => {
-  return <button>Submit</button>;
+const Button = (props) => {
+  // const { onClick } = props;
+
+  return <button onClick={props.onClick}>Submit</button>;
 };
 
 export default Button;
