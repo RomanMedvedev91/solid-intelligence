@@ -1,7 +1,7 @@
-import React from "react";
+const Button = (props) => {
+  const { onClick } = props;
 
-const Button = () => {
-  return <button>Submit</button>;
+  return <button onClick={onClick}>Submit</button>;
 };
 
 export default Button;
