@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Form.css';
 import Button from '../Button/Button';
-import Response from '../Response/Response';
+import Responses from '../Response/Response';
 
 import getData from '../../utilities/requestController';
 
@@ -16,29 +16,30 @@ const data = {
 };
 
 const Form = () => {
-  // const [response, setResponse] = useState([]);
-  const [response, setResponse] = useState('');
   const [error, setError] = useState('');
-  const [prompt, setPropmt] = useState('');
+  const [responses, setResponse] = useState([]);
+  const [prompts, setPropmts] = useState([]);
+  const [currentPrompt, setCurentPropmt] = useState('');
 
   async function postRequest() {
-    if (propmt === '') {
+    if (currentPrompt === '') {
       setError('Prompt cannot be blank');
       return;
     }
 
     setError('');
-    data.prompt = prompt;
-    console.log(data.prompt);
-    // setResponse([await getData(data), ...response]);
+    data.prompt = currentPrompt;
+    // console.log(data.prompt);
     const res = await getData(data);
-    setResponse(res);
-    console.log('response=>', res);
-    setPropmt('');
-  }
+    setPropmts([currentPrompt, ...prompts]);
+    setResponse([res, ...responses]);
 
-  // const renderReqests = (requests) =>
-  //   requests.map((request) => <div>{request}</div>);
+    console.log('responseS', responses);
+    console.log('promptS', prompts);
+
+    // empty textarea
+    setCurentPropmt('');
+  }
 
   return (
     <main>
@@ -47,18 +48,16 @@ const Form = () => {
           Text area:
           <textarea
             placeholder="Enter your request"
-            value={prompt}
+            value={currentPrompt}
             onChange={(e) => {
-              setPropmt(e.target.value);
+              setCurentPropmt(e.target.value);
             }}
           />
         </label>
       </form>
-
+      {error ? <div>{error}</div> : ''}
       <Button onSubmit={(event) => event.preventDefault()} onClick={postRequest} />
-      <div>prompt: {prompt}</div>
-      <div> {response}</div>
-      <Response response={response} />
+      <Responses responses={responses} prompts={prompts} />
     </main>
   );
 };
