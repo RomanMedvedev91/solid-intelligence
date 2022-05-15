@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Form.css';
 import Button from '../Button/Button';
 import Responses from '../Response/Response';
@@ -17,8 +17,8 @@ const data = {
 
 const Form = () => {
   const [error, setError] = useState('');
-  const [responses, setResponse] = useState([]);
-  const [prompts, setPropmts] = useState([]);
+  const [responses, setResponse] = useState(JSON.parse(localStorage.getItem('responses')) || []);
+  const [prompts, setPropmts] = useState(JSON.parse(localStorage.getItem('prompts')) || []);
   const [currentPrompt, setCurentPropmt] = useState('');
 
   async function postRequest() {
@@ -29,18 +29,25 @@ const Form = () => {
 
     setError('');
     data.prompt = currentPrompt;
-    // console.log(data.prompt);
     const res = await getData(data);
     setPropmts([currentPrompt, ...prompts]);
     setResponse([res, ...responses]);
-
-    console.log('responseS', responses);
-    console.log('promptS', prompts);
-
     // empty textarea
     setCurentPropmt('');
   }
 
+  useEffect(() => {
+    localStorage.setItem('prompts', JSON.stringify(prompts));
+  }, [prompts]);
+  useEffect(() => {
+    localStorage.setItem('responses', JSON.stringify(responses));
+  }, [responses]);
+
+  const clearLocalStorage = () => {
+    localStorage.clear();
+    setPropmts([]);
+    setResponse([]);
+  };
   return (
     <main>
       <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
@@ -57,7 +64,18 @@ const Form = () => {
       </form>
       {error ? <div>{error}</div> : ''}
       <Button onSubmit={(event) => event.preventDefault()} onClick={postRequest} />
-      <Responses responses={responses} prompts={prompts} />
+      {/* {(!prompts && !responses) ? } */}
+      <Responses
+        responses={responses}
+        prompts={prompts}
+        setNewPrompts={setPropmts}
+        setNewResponses={setResponse}
+      />
+      {responses.length >= 2 && (
+        <button onSubmit={(event) => event.preventDefault()} onClick={() => clearLocalStorage()}>
+          Clear All
+        </button>
+      )}
     </main>
   );
 };
