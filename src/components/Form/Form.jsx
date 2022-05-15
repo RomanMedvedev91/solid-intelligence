@@ -48,7 +48,6 @@ const Form = () => {
     setPropmts([]);
     setResponse([]);
   };
-
   return (
     <main>
       <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
@@ -66,7 +65,12 @@ const Form = () => {
       {error ? <div>{error}</div> : ''}
       <Button onSubmit={(event) => event.preventDefault()} onClick={postRequest} />
       {/* {(!prompts && !responses) ? } */}
-      <Responses responses={responses} prompts={prompts} />
+      <Responses
+        responses={responses}
+        prompts={prompts}
+        setNewPrompts={setPropmts}
+        setNewResponses={setResponse}
+      />
       <button onSubmit={(event) => event.preventDefault()} onClick={() => clearLocalStorage()}>
         Clear
       </button>
