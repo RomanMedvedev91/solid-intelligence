@@ -71,9 +71,11 @@ const Form = () => {
         setNewPrompts={setPropmts}
         setNewResponses={setResponse}
       />
-      <button onSubmit={(event) => event.preventDefault()} onClick={() => clearLocalStorage()}>
-        Clear
-      </button>
+      {responses.length >= 2 && (
+        <button onSubmit={(event) => event.preventDefault()} onClick={() => clearLocalStorage()}>
+          Clear All
+        </button>
+      )}
     </main>
   );
 };
