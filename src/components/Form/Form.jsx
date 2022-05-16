@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import './Form.css';
 import Button from '../Button/Button';
 import Responses from '../Response/Response';
+import SelectAplication from '../SelectApplication/SelectAplication';
 
 import getData from '../../utilities/requestController';
 
 const data = {
-  // prompt: "Write a poem about a dog wearing skis",
   prompt: '',
   temperature: 0.5,
   max_tokens: 64,
@@ -20,6 +20,7 @@ const Form = () => {
   const [responses, setResponse] = useState(JSON.parse(localStorage.getItem('responses')) || []);
   const [prompts, setPropmts] = useState(JSON.parse(localStorage.getItem('prompts')) || []);
   const [currentPrompt, setCurentPropmt] = useState('');
+  const [currentApplication, setCurrentApplication] = useState('');
 
   async function postRequest() {
     if (currentPrompt === '') {
@@ -28,7 +29,9 @@ const Form = () => {
     }
 
     setError('');
-    data.prompt = currentPrompt;
+    data.prompt = currentApplication + currentPrompt;
+    console.log(data.prompt);
+    console.log('2d', data.prompt);
     const res = await getData(data);
     setPropmts([currentPrompt, ...prompts]);
     setResponse([res, ...responses]);
@@ -48,8 +51,22 @@ const Form = () => {
     setPropmts([]);
     setResponse([]);
   };
+
+  const handleChangeApplication = (e) => {
+    console.log(e.target.value);
+    setCurrentApplication(e.target.value);
+    setCurentPropmt(e.target.value);
+  };
+
   return (
     <main>
+      <label>
+        Pick your application:
+        <SelectAplication
+          currentApplication={currentApplication}
+          onChange={handleChangeApplication}
+        />
+      </label>
       <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
         <label>
           Text area:
@@ -64,7 +81,6 @@ const Form = () => {
       </form>
       {error ? <div>{error}</div> : ''}
       <Button onSubmit={(event) => event.preventDefault()} onClick={postRequest} />
-      {/* {(!prompts && !responses) ? } */}
       <Responses
         responses={responses}
         prompts={prompts}

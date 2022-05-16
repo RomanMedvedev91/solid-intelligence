@@ -1,0 +1,40 @@
+// import Select from 'react-select';
+
+const options = [
+  {
+    label: 'Select...',
+    value: '',
+    disabled: true
+  },
+  {
+    label: 'Text to command',
+    value: 'Convert this text to a programmatic command:\n\n'
+  },
+  {
+    label: 'Grammatical Standard English',
+    value: 'Correct this to standard English:\n\n'
+  },
+  {
+    label: 'English to other languages',
+    value: 'Translate this into 1. French, 2. China and 3. Spain:\n\n'
+  },
+  {
+    label: 'Analogy maker',
+    value: 'Create an analogy for this phrase:\n\n'
+  }
+];
+
+const SelectAplication = (props) => {
+  const { currentApplication, onChange } = props;
+  return (
+    <select value={currentApplication} onChange={onChange}>
+      {options.map((option) => (
+        <option key={option.value} value={option.value} disabled={option.disabled}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  );
+};
+
+export default SelectAplication;
