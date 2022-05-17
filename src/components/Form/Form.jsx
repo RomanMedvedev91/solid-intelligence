@@ -39,6 +39,7 @@ const Form = () => {
     setCurentPropmt('');
   }
 
+  // save to local storage
   useEffect(() => {
     localStorage.setItem('prompts', JSON.stringify(prompts));
   }, [prompts]);
@@ -59,15 +60,15 @@ const Form = () => {
   };
 
   return (
-    <main>
-      <label>
-        Pick your application:
-        <SelectAplication
-          currentApplication={currentApplication}
-          onChange={handleChangeApplication}
-        />
-      </label>
-      <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+    <>
+      <form className="form-container" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+        <label>
+          Pick your application:
+          <SelectAplication
+            currentApplication={currentApplication}
+            onChange={handleChangeApplication}
+          />
+        </label>
         <label>
           Text area:
           <textarea
@@ -92,7 +93,7 @@ const Form = () => {
           Clear All
         </button>
       )}
-    </main>
+    </>
   );
 };
 
