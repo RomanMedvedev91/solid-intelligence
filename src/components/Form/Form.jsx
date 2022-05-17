@@ -61,38 +61,40 @@ const Form = () => {
 
   return (
     <>
-      <form className="form-container" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
-        <label>
-          Pick your application:
-          <SelectAplication
-            currentApplication={currentApplication}
-            onChange={handleChangeApplication}
-          />
-        </label>
-        <label>
-          Text area:
-          <textarea
-            placeholder="Enter your request"
-            value={currentPrompt}
-            onChange={(e) => {
-              setCurentPropmt(e.target.value);
-            }}
-          />
-        </label>
-      </form>
-      {error ? <div>{error}</div> : ''}
-      <Button onSubmit={(event) => event.preventDefault()} onClick={postRequest} />
-      <Responses
-        responses={responses}
-        prompts={prompts}
-        setNewPrompts={setPropmts}
-        setNewResponses={setResponse}
-      />
-      {responses.length >= 2 && (
-        <button onSubmit={(event) => event.preventDefault()} onClick={() => clearLocalStorage()}>
-          Clear All
-        </button>
-      )}
+      <section className="section-form">
+        <form className="form-container" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+          <label>
+            <SelectAplication
+              currentApplication={currentApplication}
+              onChange={handleChangeApplication}
+            />
+          </label>
+          <label>
+            <textarea
+              placeholder="Enter your request"
+              value={currentPrompt}
+              onChange={(e) => {
+                setCurentPropmt(e.target.value);
+              }}
+            />
+          </label>
+        </form>
+        {error ? <div>{error}</div> : ''}
+        <Button onSubmit={(event) => event.preventDefault()} onClick={postRequest} />
+      </section>
+      <section className="section-responses">
+        <Responses
+          responses={responses}
+          prompts={prompts}
+          setNewPrompts={setPropmts}
+          setNewResponses={setResponse}
+        />
+        {responses.length >= 2 && (
+          <button onSubmit={(event) => event.preventDefault()} onClick={() => clearLocalStorage()}>
+            Clear All
+          </button>
+        )}
+      </section>
     </>
   );
 };

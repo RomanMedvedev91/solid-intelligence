@@ -1,0 +1,24 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  font-family: 'Montserrat', 'Roboto', sans-serif;
+  font-size: 16px;
+  background: #f5f5f5;
+  border-radius: 16px;
+  padding: 24px 10px 16px 40px;
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  resize: inherit;
+}

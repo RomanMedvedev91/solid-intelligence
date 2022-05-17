@@ -24,3 +24,7 @@ p {
   text-align: center;
   color: #1c2e35;
 }
+
+button {
+  cursor: pointer;
+}

@@ -1,26 +1,9 @@
-.main-container {
-  text-align: center;
-}
-
 .header-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding: 40px 425px 0 425px; */
-  /* background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  font-size: calc(10px + 2vmin);
-  color: white; */
-}
-
-.header-image-container {
-}
-.header {
+  margin: 40px 425px 0 425px;
 }
 
 .header-description {
@@ -43,4 +26,9 @@
 .header-description > p {
   margin: 0;
   text-align: center;
+}
+
+.main-container {
+  max-width: 638px;
+  margin: 0 400px;
 }
