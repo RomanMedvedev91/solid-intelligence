@@ -1,8 +1,8 @@
-// import Select from 'react-select';
+import './SelectAplication.css';
 
 const options = [
   {
-    label: 'Select...',
+    label: 'Select your application',
     value: '',
     disabled: true
   },
@@ -27,13 +27,15 @@ const options = [
 const SelectAplication = (props) => {
   const { currentApplication, onChange } = props;
   return (
-    <select value={currentApplication} onChange={onChange}>
-      {options.map((option) => (
-        <option key={option.value} value={option.value} disabled={option.disabled}>
-          {option.label}
-        </option>
-      ))}
-    </select>
+    <div className="select-container">
+      <select value={currentApplication} onChange={onChange}>
+        {options.map((option) => (
+          <option key={option.value} value={option.value} disabled={option.disabled}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

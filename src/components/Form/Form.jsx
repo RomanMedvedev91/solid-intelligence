@@ -3,6 +3,7 @@ import './Form.css';
 import Button from '../Button/Button';
 import Responses from '../Response/Response';
 import SelectAplication from '../SelectApplication/SelectAplication';
+import Trash from '../../assets/Trash.svg';
 
 import getData from '../../utilities/requestController';
 
@@ -39,6 +40,7 @@ const Form = () => {
     setCurentPropmt('');
   }
 
+  // save to local storage
   useEffect(() => {
     localStorage.setItem('prompts', JSON.stringify(prompts));
   }, [prompts]);
@@ -59,40 +61,45 @@ const Form = () => {
   };
 
   return (
-    <main>
-      <label>
-        Pick your application:
-        <SelectAplication
-          currentApplication={currentApplication}
-          onChange={handleChangeApplication}
+    <>
+      <section className="section-form">
+        <form className="form-container" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+          <label>
+            <SelectAplication
+              currentApplication={currentApplication}
+              onChange={handleChangeApplication}
+            />
+          </label>
+          <label>
+            <textarea
+              placeholder="Enter your request"
+              value={currentPrompt}
+              onChange={(e) => {
+                setCurentPropmt(e.target.value);
+              }}
+            />
+          </label>
+        </form>
+        {error ? <div>{error}</div> : ''}
+        <Button onSubmit={(event) => event.preventDefault()} onClick={postRequest} />
+      </section>
+      <section className="section-responses">
+        <Responses
+          responses={responses}
+          prompts={prompts}
+          setNewPrompts={setPropmts}
+          setNewResponses={setResponse}
         />
-      </label>
-      <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
-        <label>
-          Text area:
-          <textarea
-            placeholder="Enter your request"
-            value={currentPrompt}
-            onChange={(e) => {
-              setCurentPropmt(e.target.value);
-            }}
-          />
-        </label>
-      </form>
-      {error ? <div>{error}</div> : ''}
-      <Button onSubmit={(event) => event.preventDefault()} onClick={postRequest} />
-      <Responses
-        responses={responses}
-        prompts={prompts}
-        setNewPrompts={setPropmts}
-        setNewResponses={setResponse}
-      />
-      {responses.length >= 2 && (
-        <button onSubmit={(event) => event.preventDefault()} onClick={() => clearLocalStorage()}>
-          Clear All
-        </button>
-      )}
-    </main>
+        {responses.length >= 2 && (
+          <button
+            className="clearAll"
+            onSubmit={(event) => event.preventDefault()}
+            onClick={() => clearLocalStorage()}>
+            clear all <img src={Trash} />
+          </button>
+        )}
+      </section>
+    </>
   );
 };
 

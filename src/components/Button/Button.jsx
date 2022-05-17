@@ -1,7 +1,13 @@
+import './Button.css';
+
 const Button = (props) => {
   const { onClick } = props;
 
-  return <button onClick={onClick}>Submit</button>;
+  return (
+    <div className="button-submit">
+      <button onClick={onClick}>SUBMIT</button>
+    </div>
+  );
 };
 
 export default Button;
