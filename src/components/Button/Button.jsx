@@ -5,7 +5,7 @@ const Button = (props) => {
 
   return (
     <div className="button-submit">
-      <button onClick={onClick}>Submit</button>
+      <button onClick={onClick}>SUBMIT</button>
     </div>
   );
 };

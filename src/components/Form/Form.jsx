@@ -3,6 +3,7 @@ import './Form.css';
 import Button from '../Button/Button';
 import Responses from '../Response/Response';
 import SelectAplication from '../SelectApplication/SelectAplication';
+import Trash from '../../assets/Trash.svg';
 
 import getData from '../../utilities/requestController';
 
@@ -90,8 +91,11 @@ const Form = () => {
           setNewResponses={setResponse}
         />
         {responses.length >= 2 && (
-          <button onSubmit={(event) => event.preventDefault()} onClick={() => clearLocalStorage()}>
-            Clear All
+          <button
+            className="clearAll"
+            onSubmit={(event) => event.preventDefault()}
+            onClick={() => clearLocalStorage()}>
+            clear all <img src={Trash} />
           </button>
         )}
       </section>

@@ -1,3 +1,6 @@
+import './Response.css';
+import closeIcon from '../../assets/circle-xmark-solid.svg';
+
 const Responses = (props) => {
   const { responses, prompts, setNewPrompts, setNewResponses } = props;
 
@@ -17,15 +20,14 @@ const Responses = (props) => {
 
     return prompts.map((prompt, indx) => {
       return (
-        <div key={prompt}>
+        <div className="responses-container" key={prompt}>
           <button
             onSubmit={(event) => event.preventDefault()}
             onClick={() => clearCurentPrompt(indx)}>
-            X
+            <img src={closeIcon} alt="closeIcon" />
           </button>
-          <div>PROMPT: {prompt}</div>
-          <div>RESPONSE: {responses[indx]}</div>
-          <br />
+          <div className="prompt">{prompt}</div>
+          <div className="response">{responses[indx]}</div>
         </div>
       );
     });

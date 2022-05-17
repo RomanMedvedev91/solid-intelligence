@@ -1,6 +1,8 @@
 import './App.css';
 import Form from './Form/Form';
 import { ReactComponent as HeaderImg } from '../assets/header-big.svg';
+import logoFooter from '../assets/logoFooter.svg';
+import lineFooter from '../assets/lineFooter.png';
 
 function App() {
   return (
@@ -20,7 +22,23 @@ function App() {
       <main className="main-container">
         <Form />
       </main>
-      <footer>Footer</footer>
+      <footer>
+        <div className="footer-line">
+          <img src={lineFooter} />
+        </div>
+        <div className="footer-container">
+          <img className="footer-logo" src={logoFooter} />
+          <div className="footer-title">
+            <p>SOLID INTELLIGENCE</p>
+          </div>
+          <div className="footer-rights">
+            <p>Copyright © 2000-2022 SOLID INTELLIGENCE Company S.L. All rights reserved.</p>
+          </div>
+          <div className="footer-sourses">
+            <p>Images designed by Freepik.com</p>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

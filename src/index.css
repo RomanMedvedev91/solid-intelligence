@@ -14,6 +14,9 @@ body {
 
 #root {
   width: 1440px;
+  min-height: 100vh;
+  padding-bottom: 120px;
+  position: relative;
 }
 
 p {

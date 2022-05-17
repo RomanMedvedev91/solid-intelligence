@@ -11,6 +11,7 @@ label {
 
 textarea {
   width: 100%;
+  height: 145px;
   font-family: 'Montserrat', 'Roboto', sans-serif;
   font-size: 16px;
   background: #f5f5f5;
@@ -21,4 +22,29 @@ textarea {
   border: 0;
   box-shadow: none;
   resize: inherit;
+}
+
+.section-responses {
+  margin-top: 65px;
+}
+
+.clearAll {
+  margin-left: 536px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 0;
+  border: 0;
+  background: #ccedff;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1c2e35;
+  padding: 4px 8px;
+  gap: 10px;
+}
+
+.clearAll:hover {
+  background-color: #f5f5f5;
 }
