@@ -11,8 +11,6 @@ export default async function getData(prompt) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        console.log(data.choices[0].text);
         return data.choices[0].text;
       });
     return response;

@@ -10,8 +10,7 @@ const Responses = (props) => {
       const responses = JSON.parse(localStorage.getItem('responses'));
       prompts.splice(currentPromptIndex, 1);
       responses.splice(currentPromptIndex, 1);
-      console.log('Updated prompts', prompts);
-      console.log('Updated responses', responses);
+      //save to local storage
       localStorage.setItem('prompts', JSON.stringify(prompts));
       localStorage.setItem('responses', JSON.stringify(responses));
       setNewPrompts(prompts);
